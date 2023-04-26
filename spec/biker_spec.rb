@@ -23,12 +23,16 @@ RSpec.describe Ride do
     it 'has a rides hash and can log rides' do
       expect(@biker.rides).to eq({})
 
-      biker.log_ride(ride1, 92.5)
-      biker.log_ride(ride1, 91.1)
-      biker.log_ride(ride2, 60.9)
-      biker.log_ride(ride2, 60.9)
-
-      expect(@biker.rides).to eq(@rides)
+      @biker.log_ride(@ride1, 92.5)
+      @biker.log_ride(@ride1, 91.1)
+      @biker.log_ride(@ride2, 60.9)
+      @biker.log_ride(@ride2, 61.6)
+      
+      expected1 = {
+        @ride1 => [92.5, 91.1],
+        @ride2 => [60.9, 61.6]
+      }
+      expect(@biker.rides).to eq(expected1)
     end
 
     it 'has an acceptable_terrain array and can learn terrain' do
